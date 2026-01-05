@@ -8,10 +8,34 @@ class Couch:
         return self.width * self.length
 
 
-##########################################
-#       Add your new classes here!       #
-# (Make sure not to accidentally indent) #
-##########################################
+class SleeperSofa(Couch):
+    def __init__(self, length, width):
+        super().__init__(length, width)
+        self.folded_out = False
+        self.sheets = None
+
+    def convert(self):
+
+        if self.sheets is None:
+
+            if self.folded_out:
+                self.width /= 2
+            else:
+                self.width *= 2
+
+            self.folded_out = not self.folded_out
+
+    def put_on_sheets(self, sheets):
+        if self.folded_out and self.sheets is None:
+            self.sheets = sheets
+
+    def remove_sheets(self):
+        self.sheets = None
+
+
+class Sheets:
+    def __init__(self, material='cotton'):
+        self.material = material
 
 
 ########## WAVE 1 ##########
